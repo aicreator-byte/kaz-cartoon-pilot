@@ -417,7 +417,7 @@ export const MainVideo = () => {
         overflow: "hidden",
       }}
     >
-      <Audio src="src/music.wav" playFrom={0} />
+      <Audio src="/music.wav" playFrom={0} />
 
       {/* Langit */}
       <div

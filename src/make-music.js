@@ -84,6 +84,6 @@ header.writeInt16LE(BIT_DEPTH, 34);
 header.write("data", 36);
 header.writeInt32LE(dataSize, 40);
 
-fs.writeFileSync("src/music.wav", Buffer.concat([header, audio]));
+fs.writeFileSync("public/music.wav", Buffer.concat([header, audio]));
 const durasi = audio.length / SAMPLE_RATE / CHANNELS / 2;
 console.log(`Musik tersimpan: src/music.wav (${Math.round(audio.length / 1024)} KB, ${durasi.toFixed(1)} detik)`);
