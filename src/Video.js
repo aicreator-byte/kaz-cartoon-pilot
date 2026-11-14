@@ -45,11 +45,7 @@ const Kotak = ({ x, y, w, h, bg, radius = 8, border = 4 }) => (
 
 /* ---------- Mata kartun: besar, bersinar ---------- */
 const Mata = ({ x, y, size = 22, kaget = false, menoleh = 0 }) => {
-  const pupilX = interpolate({
-    value: menoleh,
-    inputRange: [-1, 0, 1],
-    outputRange: [-size / 3, 0, size / 3],
-  });
+  const pupilX = menoleh * (size / 3);
   return (
     <div style={{ position: "absolute", left: x, top: y }}>
       {/* Kulit mata */}
