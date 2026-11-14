@@ -1,0 +1,20 @@
+{
+  "name": "kaz-cartoon-pilot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pilot kartun anak-anak gaya Tom and Jerry — karakter animasi, musik latar, tanpa suara bicara",
+  "scripts": {
+    "make-music": "node src/make-music.js",
+    "start": "remotion studio",
+    "render": "remotion render",
+    "build": "remotion bundle"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@remotion/cli": "^4.0.163",
+    "@remotion/renderer": "^4.0.163",
+    "@remotion/bundler": "^4.0.163",
+    "remotion": "^4.0.163"
+  }
+}

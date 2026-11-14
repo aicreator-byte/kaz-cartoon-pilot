@@ -1,0 +1,31 @@
+name: Render Kartun Pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate musik latar
+        run: node src/make-music.js
+
+      - name: Render video
+        run: npx remotion render src/index.js KartunPilot out/pilot.mp4 --image-format jpeg --codec h264 --overwrite
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kartun-pilot
+          path: out/pilot.mp4
