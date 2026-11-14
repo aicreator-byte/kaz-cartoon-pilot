@@ -384,7 +384,7 @@ export const Caption = ({ teks, x, y, ukuran = 28 }) => (
     }}
   >
     {teks}
-  />
+  </div>
 );
 
 /* ---------- Komponen utama ---------- */
