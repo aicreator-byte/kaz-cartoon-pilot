@@ -1,6 +1,7 @@
 import {
   useVideoConfig,
   useCurrentFrame,
+  interpolate,
   Spring,
   Audio,
 } from "remotion";
