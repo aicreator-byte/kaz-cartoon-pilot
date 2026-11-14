@@ -1,3 +1,4 @@
+import music from "./music.wav";
 import {
   useVideoConfig,
   useCurrentFrame,
@@ -417,7 +418,7 @@ export const MainVideo = () => {
         overflow: "hidden",
       }}
     >
-      <Audio src="/music.wav" playFrom={0} />
+      <Audio src={music} playFrom={0} />
 
       {/* Langit */}
       <div
