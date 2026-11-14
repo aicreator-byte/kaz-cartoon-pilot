@@ -1,7 +1,6 @@
 import {
   useVideoConfig,
   useCurrentFrame,
-  interpolate,
   Spring,
   Audio,
 } from "remotion";
@@ -129,8 +128,6 @@ const Mulut = ({ x, y, senang = false, sedih = false, kaget = false, terkecil = 
 
 /* ---------- Karakter: Kucing ---------- */
 export const Kucing = ({ x = 0, y = 0, mood = "normal", scale = 1, arah = 1 }) => {
-  const frame = useCurrentFrame();
-  const s = interpolate({ value: frame % 30, inputRange: [0, 15, 30], outputRange: [scale, scale * 1.05, scale] }); // squash-stretch ringan
 
   const kaget = mood === "kaget";
   const marah = mood === "marah";
@@ -148,7 +145,7 @@ export const Kucing = ({ x = 0, y = 0, mood = "normal", scale = 1, arah = 1 }) =
         position: "absolute",
         left: x,
         top: y,
-        transform: `scale(${s}) ${arah < 0 ? "scaleX(-1)" : ""}`,
+        transform: `scale(${scale}) ${arah < 0 ? "scaleX(-1)" : ""}`,
         width: 140,
         height: 140,
         zIndex: 10,
@@ -241,9 +238,6 @@ export const Kucing = ({ x = 0, y = 0, mood = "normal", scale = 1, arah = 1 }) =
 
 /* ---------- Karakter: Tikus ---------- */
 export const Tikus = ({ x = 0, y = 0, mood = "normal", scale = 1, arah = 1 }) => {
-  const frame = useCurrentFrame();
-  const s = interpolate({ value: frame % 20, inputRange: [0, 10, 20], outputRange: [scale, scale * 1.1, scale] });
-
   const senang = mood === "senang";
   const kaget = mood === "kaget";
   const malu = mood === "malu";
@@ -255,7 +249,7 @@ export const Tikus = ({ x = 0, y = 0, mood = "normal", scale = 1, arah = 1 }) =>
         position: "absolute",
         left: x,
         top: y,
-        transform: `scale(${s}) ${arah < 0 ? "scaleX(-1)" : ""}`,
+        transform: `scale(${scale}) ${arah < 0 ? "scaleX(-1)" : ""}`,
         width: 90,
         height: 90,
         zIndex: 10,
