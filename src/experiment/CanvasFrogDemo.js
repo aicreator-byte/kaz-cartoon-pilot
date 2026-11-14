@@ -3,7 +3,8 @@
 // TEST 1: Buktikan Canvas 2D bekerja deterministik dalam pipeline Remotion.
 // ============================================================================
 
-import { useVideoConfig, useCurrentFrame, useRef, useEffect } from "remotion";
+import { useVideoConfig, useCurrentFrame } from "remotion";
+import { useRef, useEffect } from "react";
 import { drawFrog } from "./FrogCanvas.js";
 
 export const CanvasFrogDemo = () => {
