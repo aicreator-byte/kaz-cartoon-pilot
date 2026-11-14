@@ -1,7 +1,6 @@
 import {
   useVideoConfig,
   useCurrentFrame,
-  interpolate,
   Spring,
   Audio,
 } from "remotion";
@@ -389,33 +388,22 @@ export const Caption = ({ teks, x, y, ukuran = 28 }) => (
 
 /* ---------- Komponen utama ---------- */
 export const MainVideo = () => {
-  const { width, height, durationInFrames } = useVideoConfig();
-  const frame = useCurrentFrame();
+  const { width = 1280, height = 720 } = useVideoConfig();
+  const frame = useCurrentFrame() ?? 0;
 
   /* Fase adegan (setiap fase ~60 frame = 2 detik @30fps) */
   const fase = Math.min(4, Math.floor(frame / 60));
 
-  /* Animasi gerak kucing dan tikus */
-  const kucingX = interpolate({
-    value: frame,
-    inputRange: [0, 60, 120, 180, 240, 300],
-    outputRange: [width - 200, width - 200, width / 2 - 100, width / 2 - 80, width - 200, width - 200],
-  });
-  const kucingY = interpolate({
-    value: frame,
-    inputRange: [0, 60, 120, 300],
-    outputRange: [height - 180, height - 180, height - 180, height - 180],
-  });
-  const tikusX = interpolate({
-    value: frame,
-    inputRange: [0, 60, 120, 180, 240, 300],
-    outputRange: [100, 100, width / 2 - 60, width / 2 - 40, 150, 150],
-  });
-  const tikusY = interpolate({
-    value: frame,
-    inputRange: [0, 60, 120, 180, 240, 300],
-    outputRange: [height - 140, height - 140, height - 140, height - 140, height - 140, height - 140],
-  });
+  /* Posisi karakter per fase (tidak pakai interpolate agar stabil di frame 0) */
+  let kucingX, tikusX;
+  if (fase === 0) { kucingX = width - 200; tikusX = 100; }
+  else if (fase === 1) { kucingX = width / 2 - 100; tikusX = width / 2 - 60; }
+  else if (fase === 2) { kucingX = width / 2 - 80; tikusX = width / 2 - 40; }
+  else if (fase === 3) { kucingX = width / 2 - 60; tikusX = width / 2 - 20; }
+  else { kucingX = width - 200; tikusX = 150; }
+
+  const kucingY = height - 180;
+  const tikusY = height - 140;
 
   /* Mood karakter per fase */
   const kucingMood = fase === 0 ? "tidur" : fase === 1 ? "marah" : fase === 2 ? "kaget" : fase === 3 ? "pusing" : "normal";
